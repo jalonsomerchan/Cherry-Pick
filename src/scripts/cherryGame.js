@@ -1,5 +1,5 @@
-import { cherrySprites, difficultyOptions } from '../data/game.js?v=3';
-import { getLocale, t } from '../i18n/translations.js?v=3';
+import { cherrySpriteSheet, cherrySprites, difficultyOptions } from '../data/game.js?v=4';
+import { getLocale, t } from '../i18n/translations.js?v=4';
 
 const setupCherryGame = (root) => {
   const canvas = root.querySelector('[data-canvas]');
@@ -19,6 +19,8 @@ const setupCherryGame = (root) => {
   };
   const difficulties = difficultyOptions;
   const sprites = cherrySprites;
+  const goodSprites = sprites.filter((sprite) => sprite.kind === 'good');
+  const badSprites = sprites.filter((sprite) => sprite.kind === 'bad');
   const stats = {
     time: root.querySelector('[data-stat="time"]'),
     score: root.querySelector('[data-stat="score"]'),
@@ -154,12 +156,11 @@ const setupCherryGame = (root) => {
     window.setTimeout(() => toast.classList.remove('is-visible'), 1800);
   };
 
-  const getSprite = (id) => sprites.find((sprite) => sprite.id === id) ?? sprites[0];
+  const randomFrom = (items) => items[Math.floor(Math.random() * items.length)] ?? sprites[0];
 
   const chooseSprite = () => {
     const badChance = Math.min(0.32 + state.elapsed / 70000, 0.62);
-    if (Math.random() > badChance) return getSprite('healthy');
-    return [getSprite('rotten'), getSprite('worm'), getSprite('cracked')][Math.floor(Math.random() * 3)];
+    return Math.random() > badChance ? randomFrom(goodSprites) : randomFrom(badSprites);
   };
 
   const spawnCherry = () => {
@@ -265,14 +266,15 @@ const setupCherryGame = (root) => {
   };
 
   const drawCherry = (cherry) => {
-    const cell = sheet.width / 2;
-    const sourceX = cherry.sprite.column * cell;
-    const sourceY = cherry.sprite.row * cell;
+    const cellWidth = sheet.width / cherrySpriteSheet.columns;
+    const cellHeight = sheet.height / cherrySpriteSheet.rows;
+    const sourceX = cherry.sprite.column * cellWidth;
+    const sourceY = cherry.sprite.row * cellHeight;
     const bob = Math.sin(state.elapsed / 160 + cherry.wobble) * 4;
     context.save();
     context.translate(cherry.x + bob, cherry.y);
     context.rotate(cherry.spin * 0.05);
-    context.drawImage(sheet, sourceX, sourceY, cell, cell, -cherry.size / 2, -cherry.size / 2, cherry.size, cherry.size);
+    context.drawImage(sheet, sourceX, sourceY, cellWidth, cellHeight, -cherry.size / 2, -cherry.size / 2, cherry.size, cherry.size);
     context.restore();
   };
 

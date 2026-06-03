@@ -4,9 +4,26 @@ export const difficultyOptions = [
   { id: 'hard', badLimit: 3, speed: 1.2, spawn: 820 },
 ];
 
+export const cherrySpriteSheet = {
+  rows: 4,
+  columns: 4,
+};
+
 export const cherrySprites = [
-  { id: 'healthy', kind: 'good', column: 0, row: 0 },
-  { id: 'rotten', kind: 'bad', column: 1, row: 0 },
-  { id: 'worm', kind: 'bad', column: 0, row: 1 },
-  { id: 'cracked', kind: 'bad', column: 1, row: 1 },
+  { id: 'healthy-pair', kind: 'good', column: 0, row: 0 },
+  { id: 'leaf-single', kind: 'good', column: 1, row: 0 },
+  { id: 'burgundy-pair', kind: 'good', column: 2, row: 0 },
+  { id: 'golden', kind: 'good', column: 3, row: 0 },
+  { id: 'heart-twin', kind: 'good', column: 0, row: 1 },
+  { id: 'cluster-three', kind: 'good', column: 1, row: 1 },
+  { id: 'washed-pair', kind: 'good', column: 2, row: 1 },
+  { id: 'perfect-large', kind: 'good', column: 3, row: 1 },
+  { id: 'rotten', kind: 'bad', column: 0, row: 2 },
+  { id: 'worm', kind: 'bad', column: 1, row: 2 },
+  { id: 'cracked', kind: 'bad', column: 2, row: 2 },
+  { id: 'moldy', kind: 'bad', column: 3, row: 2 },
+  { id: 'bitten', kind: 'bad', column: 0, row: 3 },
+  { id: 'shriveled', kind: 'bad', column: 1, row: 3 },
+  { id: 'crushed', kind: 'bad', column: 2, row: 3 },
+  { id: 'infected', kind: 'bad', column: 3, row: 3 },
 ];

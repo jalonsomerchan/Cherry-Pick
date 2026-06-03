@@ -1,1 +1,1 @@
-Clean HD 2x2 cherry game sprite sheet: healthy, rotten, worm, cracked; solid magenta background; same scale; no text.
+Clean HD 4x4 cherry game sprite sheet with 8 good and 8 bad variants; solid magenta #FF00FF background; same scale; no text.

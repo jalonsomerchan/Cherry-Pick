@@ -23,8 +23,13 @@ test('static pages include core game actions', async () => {
 });
 
 test('game data includes progressive difficulty and bad cherry variants', async () => {
+  const { cherrySpriteSheet, cherrySprites } = await import('../src/data/game.js');
   const data = await readFile('src/data/game.js', 'utf8');
 
+  assert.equal(cherrySpriteSheet.rows, 4);
+  assert.equal(cherrySpriteSheet.columns, 4);
+  assert.equal(cherrySprites.filter((sprite) => sprite.kind === 'good').length, 8);
+  assert.equal(cherrySprites.filter((sprite) => sprite.kind === 'bad').length, 8);
   assert.match(data, /badLimit: 7/);
   assert.match(data, /badLimit: 3/);
   assert.match(data, /rotten/);
@@ -35,9 +40,19 @@ test('game data includes progressive difficulty and bad cherry variants', async 
 test('sprite pipeline assets exist in public folder', async () => {
   const meta = JSON.parse(await readFile('assets/sprites/cherries/pipeline-meta.json', 'utf8'));
 
-  assert.equal(meta.rows, 2);
-  assert.equal(meta.cols, 2);
-  assert.deepEqual(meta.frames, ['healthy', 'rotten', 'worm', 'cracked']);
+  assert.equal(meta.rows, 4);
+  assert.equal(meta.cols, 4);
+  assert.equal(meta.frames.length, 16);
+  assert.deepEqual(meta.good_frames, [
+    'healthy-pair',
+    'leaf-single',
+    'burgundy-pair',
+    'golden',
+    'heart-twin',
+    'cluster-three',
+    'washed-pair',
+    'perfect-large',
+  ]);
 });
 
 test('game conveyor moves cherries vertically', async () => {
