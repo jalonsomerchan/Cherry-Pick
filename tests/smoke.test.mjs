@@ -70,9 +70,22 @@ test('mobile play view gives the conveyor full available height', async () => {
   assert.match(css, /height: calc\(100dvh - 1rem\)/);
   assert.match(css, /aspect-ratio: auto/);
   assert.match(css, /width: 4\.9rem/);
-  assert.match(css, /body:has\(\[data-current-screen="play"\]\) \.nav-links/);
+  assert.doesNotMatch(css, /\.nav-links/);
+  assert.doesNotMatch(css, /\.site-header/);
   assert.match(script, /new ResizeObserver\(resizeCanvas\)/);
   assert.match(script, /context\.fillRect\(belt\.left, 0, belt\.width, canvas\.height\)/);
+});
+
+test('arcade home removes site header and keeps main menu actions', async () => {
+  const shell = await readFile('index.html', 'utf8');
+  const css = await readFile('src/styles/global.css', 'utf8');
+
+  assert.doesNotMatch(shell, /class="site-header"/);
+  assert.match(shell, /Cherry Pick/);
+  assert.match(shell, /data-i18n="game\.options"/);
+  assert.match(shell, /data-i18n="game\.credits"/);
+  assert.match(css, /linear-gradient\(180deg, #d7c2d2/);
+  assert.match(css, /-webkit-text-stroke/);
 });
 
 test('hamburger menu pauses and end screen tracks records', async () => {
