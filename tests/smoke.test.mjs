@@ -58,7 +58,9 @@ test('sprite pipeline assets exist in public folder', async () => {
 test('game conveyor moves cherries vertically', async () => {
   const script = await readFile('src/scripts/cherryGame.js', 'utf8');
 
+  assert.match(script, /const width = canvas\.width \* 0\.9/);
   assert.match(script, /y: -70/);
+  assert.match(script, /belt\.left \+ belt\.width \* \(0\.08 \+ Math\.random\(\) \* 0\.84\)/);
   assert.match(script, /cherry\.y \+= \(cherry\.removed \? speed \* 0\.35 : speed\)/);
   assert.match(script, /swipeX/);
 });

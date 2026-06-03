@@ -58,7 +58,7 @@ const setupCherryGame = (root) => {
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
   const getBelt = () => {
-    const width = clamp(canvas.width * 0.34, 170, 280);
+    const width = canvas.width * 0.9;
     const left = (canvas.width - width) / 2;
     return {
       left,
@@ -169,7 +169,7 @@ const setupCherryGame = (root) => {
     state.cherries.push({
       id: crypto.randomUUID(),
       sprite,
-      x: belt.center + (Math.random() - 0.5) * belt.width * 0.44,
+      x: belt.left + belt.width * (0.08 + Math.random() * 0.84),
       y: -70,
       size: clamp(canvas.width * 0.12, 58, 88) + Math.random() * 8,
       wobble: Math.random() * Math.PI * 2,
