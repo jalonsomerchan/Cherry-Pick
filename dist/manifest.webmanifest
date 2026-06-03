@@ -1,0 +1,8 @@
+{
+  "name": "Cerezas",
+  "short_name": "Cerezas",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff7f2",
+  "theme_color": "#8f1f35"
+}

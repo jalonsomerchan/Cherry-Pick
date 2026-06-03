@@ -1,0 +1,506 @@
+:root {
+  color-scheme: light;
+  --color-bg: #fff8f4;
+  --color-surface: #ffffff;
+  --color-surface-soft: #ffe9df;
+  --color-text: #26151a;
+  --color-muted: #73545c;
+  --color-primary: #a7163e;
+  --color-primary-strong: #7b0d2d;
+  --color-accent: #127c68;
+  --color-belt: #51464b;
+  --color-belt-line: #d4c1b5;
+  --color-focus: #0b6fba;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --shadow-soft: 0 1rem 3rem rgb(74 20 32 / 14%);
+  --space-page: clamp(1rem, 4vw, 3rem);
+  --transition-fast: 160ms ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #171214;
+    --color-surface: #241a1e;
+    --color-surface-soft: #39242b;
+    --color-text: #fff5f1;
+    --color-muted: #d3b6bd;
+    --color-primary: #ff6f91;
+    --color-primary-strong: #ff9eb5;
+    --color-accent: #5ee0c1;
+    --color-belt: #665a60;
+    --color-belt-line: #33282d;
+    --color-focus: #8ed0ff;
+    --shadow-soft: 0 1rem 3rem rgb(0 0 0 / 30%);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100dvh;
+  margin: 0;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  min-height: 2.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary), transparent 70%);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+button:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 20;
+  transform: translateY(-150%);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.9rem;
+  background: var(--color-primary);
+  color: white;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  padding: 1rem var(--space-page) 0;
+}
+
+body:has([data-current-screen="play"]) .site-header {
+  display: none;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(72rem, 100%);
+  margin: 0 auto;
+}
+
+.brand {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 0.25rem 0.8rem;
+}
+
+.nav-links a {
+  color: var(--color-muted);
+  font-size: 0.94rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.game-shell {
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 4rem);
+  padding: var(--space-page);
+  overflow: hidden;
+}
+
+.game-panel,
+.play-area {
+  width: min(62rem, 100%);
+}
+
+.game-panel {
+  display: grid;
+  gap: 1.1rem;
+  width: min(32rem, 100%);
+  padding: clamp(1.25rem, 5vw, 3rem);
+  border: 1px solid color-mix(in srgb, var(--color-primary), transparent 82%);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 12% 12%, color-mix(in srgb, var(--color-primary), transparent 78%), transparent 34%),
+    linear-gradient(145deg, var(--color-surface), var(--color-surface-soft));
+  box-shadow: var(--shadow-soft);
+}
+
+.kicker {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 0.88rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: clamp(2.9rem, 11vw, 7rem);
+  line-height: 0.9;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+}
+
+.subtitle {
+  max-width: 44rem;
+  color: var(--color-muted);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.home-actions,
+.game-controls,
+.difficulty-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.home-actions {
+  max-width: 18rem;
+}
+
+.home-actions button,
+.difficulty-grid button {
+  justify-content: center;
+}
+
+.primary-action {
+  background: var(--color-primary);
+  color: white;
+}
+
+.difficulty-grid {
+  grid-template-columns: 1fr;
+  max-width: 20rem;
+}
+
+.difficulty-grid button {
+  display: grid;
+  gap: 0.3rem;
+  min-height: 5.4rem;
+  align-content: center;
+}
+
+.difficulty-grid span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.play-area {
+  position: relative;
+  display: grid;
+  gap: 0;
+}
+
+.hud {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+  width: 5.8rem;
+}
+
+.hud > span {
+  min-width: 0;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.62rem;
+  border: 1px solid rgb(255 255 255 / 18%);
+  background: color-mix(in srgb, var(--color-surface), transparent 10%);
+  box-shadow: 0 0.8rem 1.6rem rgb(0 0 0 / 18%);
+  color: var(--color-muted);
+  font-weight: 700;
+  text-align: center;
+  backdrop-filter: blur(14px);
+  display: grid;
+  gap: 0.22rem;
+}
+
+.hud strong {
+  color: var(--color-text);
+  font-size: 1.08rem;
+  line-height: 1;
+}
+
+.game-canvas {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 24rem;
+  border: 1px solid color-mix(in srgb, var(--color-belt), transparent 45%);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+  touch-action: none;
+}
+
+.game-menu-button {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-end: 0.75rem;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  gap: 0.19rem;
+  width: 2.8rem;
+  min-height: 2.8rem;
+  padding: 0;
+  border-color: rgb(255 255 255 / 18%);
+  background: color-mix(in srgb, var(--color-surface), transparent 8%);
+  box-shadow: 0 0.8rem 1.6rem rgb(0 0 0 / 18%);
+  backdrop-filter: blur(14px);
+}
+
+.game-menu-button span {
+  width: 1.18rem;
+  height: 0.15rem;
+  border-radius: 999px;
+  background: var(--color-text);
+}
+
+.instructions {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  font-weight: 650;
+  text-align: center;
+}
+
+.game-dialog {
+  max-width: min(26rem, calc(100% - 2rem));
+  border: 1px solid color-mix(in srgb, var(--color-primary), transparent 72%);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+}
+
+.game-dialog::backdrop {
+  background: rgb(20 10 14 / 62%);
+}
+
+.dialog-kicker {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dialog-actions {
+  display: grid;
+  gap: 0.65rem;
+  margin-block-start: 1rem;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-block-start: 1rem;
+}
+
+.result-grid p {
+  display: grid;
+  gap: 0.25rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary), transparent 80%);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  background: var(--color-surface-soft);
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.result-grid strong {
+  color: var(--color-text);
+  font-size: 1.3rem;
+}
+
+.toast {
+  position: fixed;
+  inset-inline: 1rem;
+  inset-block-end: 1rem;
+  max-width: 24rem;
+  margin: auto;
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  background: var(--color-primary);
+  color: white;
+  text-align: center;
+  transform: translateY(180%);
+  transition: transform var(--transition-fast);
+}
+
+.toast.is-visible {
+  transform: translateY(0);
+}
+
+.is-hidden {
+  display: none;
+}
+
+@media (max-width: 42rem) {
+  :root {
+    --space-page: 0.75rem;
+  }
+
+  body:has([data-current-screen="play"]) {
+    overflow: hidden;
+  }
+
+  .site-header {
+    padding-block-start: 0.55rem;
+  }
+
+  .site-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .site-nav {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .nav-links {
+    justify-content: start;
+    gap: 0.5rem;
+  }
+
+  .nav-links a {
+    font-size: 0.86rem;
+  }
+
+  .game-shell {
+    min-height: calc(100dvh - 3.9rem);
+    padding-block: 0.65rem;
+  }
+
+  [data-current-screen="play"] {
+    min-height: 100dvh;
+    padding: 0.5rem;
+  }
+
+  .hud {
+    inset-block-start: 0.5rem;
+    inset-inline-start: 0.5rem;
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    width: 4.9rem;
+  }
+
+  .hud > span {
+    min-height: 2.7rem;
+    padding: 0.38rem 0.28rem;
+    font-size: 0.68rem;
+    line-height: 1.15;
+  }
+
+  .play-area {
+    height: calc(100dvh - 1rem);
+    gap: 0;
+  }
+
+  .game-canvas {
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-radius: var(--radius-sm);
+  }
+
+  .instructions {
+    display: none;
+  }
+
+  [data-current-screen="play"] {
+    place-items: stretch;
+  }
+
+  [data-current-screen="play"] .play-area {
+    width: 100%;
+  }
+
+  body:has([data-current-screen="play"]) .nav-links {
+    display: none;
+  }
+
+  body:has([data-current-screen="play"]) .site-nav {
+    display: block;
+  }
+
+  .game-menu-button {
+    inset-block-start: 0.5rem;
+    inset-inline-end: 0.5rem;
+    width: 2.65rem;
+    min-height: 2.65rem;
+  }
+
+  .game-panel {
+    align-content: center;
+    min-height: min(42rem, calc(100dvh - 1.5rem));
+  }
+
+  .home-actions,
+  .difficulty-grid {
+    max-width: none;
+  }
+
+  .home-actions button,
+  .difficulty-grid button,
+  .dialog-actions button {
+    width: 100%;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+}

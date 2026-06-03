@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Aparta las cerezas en mal estado antes de que salgan de la cinta."
+      data-i18n-attr="content:site.description"
+    />
+    <meta name="theme-color" content="#8f1f35" />
+    <link rel="canonical" href="./" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta property="og:title" content="Cerezas" data-i18n-attr="content:site.title" />
+    <meta
+      property="og:description"
+      content="Aparta las cerezas en mal estado antes de que salgan de la cinta."
+      data-i18n-attr="content:site.description"
+    />
+    <meta property="og:type" content="website" />
+    <title>Cerezas</title>
+    <link rel="stylesheet" href="src/styles/global.css" />
+    <script type="module" src="src/scripts/cherryGame.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="nav.play">Jugar</a>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Principal">
+        <a class="brand" href="./" data-i18n="site.title">Cerezas</a>
+        <div class="nav-links">
+          <a href="#play" data-i18n="nav.play">Jugar</a>
+          <a href="#about" data-i18n="nav.about">Acerca de</a>
+          <a href="#share" data-i18n="nav.share">Compartir</a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="game-shell" id="play" data-game data-assets-base="assets/sprites/cherries/">
+        <div class="game-panel" data-screen="home">
+          <p class="kicker" data-i18n="game.kicker">Arcade táctil</p>
+          <h1 data-i18n="game.title">Cerezas</h1>
+          <p class="subtitle" data-i18n="game.subtitle">Descarta las cerezas podridas, con gusano o rajadas. Cuanto más aguantes, más puntos ganas.</p>
+          <div class="home-actions">
+            <button class="primary-action" type="button" data-action="show-difficulty" data-i18n="game.play">Jugar</button>
+            <button type="button" data-action="show-about" data-i18n="game.about">Acerca de</button>
+            <button type="button" id="share" data-action="share" data-i18n="game.share">Compartir</button>
+          </div>
+        </div>
+
+        <div class="game-panel is-hidden" data-screen="difficulty" aria-live="polite">
+          <h2 data-i18n="game.difficultyTitle">Elige dificultad</h2>
+          <div class="difficulty-grid" data-difficulty-grid></div>
+          <button type="button" data-action="home" data-i18n="game.back">Volver</button>
+        </div>
+
+        <div class="play-area is-hidden" data-screen="play">
+          <button class="game-menu-button" type="button" data-action="open-menu" aria-label="Menú" data-i18n-attr="aria-label:game.menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="hud" aria-label="Marcador">
+            <span><span data-i18n="game.time" data-i18n-mobile="game.timeShort">Tiempo</span><strong data-stat="time">0</strong></span>
+            <span><span data-i18n="game.score" data-i18n-mobile="game.scoreShort">Puntos</span><strong data-stat="score">0</strong></span>
+            <span><span data-i18n="game.missed" data-i18n-mobile="game.missedShort">Malas pasadas</span><strong><span data-stat="missed">0</span>/<span data-stat="limit">0</span></strong></span>
+          </div>
+          <canvas class="game-canvas" width="960" height="540" aria-label="Aparta las cerezas malas hacia izquierda o derecha. Deja pasar las buenas." data-i18n-attr="aria-label:game.instructions" data-canvas></canvas>
+        </div>
+
+        <dialog class="game-dialog" data-dialog="about" id="about">
+          <p data-i18n="game.aboutText">Una cinta cada vez más rápida trae cerezas buenas y malas desde arriba. Aparta solo las malas con un gesto lateral.</p>
+          <button type="button" data-action="close-dialog" data-i18n="game.close">Cerrar</button>
+        </dialog>
+
+        <dialog class="game-dialog menu-dialog" data-dialog="pause">
+          <p class="dialog-kicker" data-i18n="game.menu">Menú</p>
+          <h2 data-i18n="game.pauseTitle">Partida en pausa</h2>
+          <div class="dialog-actions">
+            <button class="primary-action" type="button" data-action="resume" data-i18n="game.continue">Seguir jugando</button>
+            <button type="button" data-action="restart" data-i18n="game.restart">Reiniciar</button>
+            <button type="button" data-action="exit" data-i18n="game.exit">Salir</button>
+          </div>
+        </dialog>
+
+        <dialog class="game-dialog" data-dialog="over">
+          <p class="dialog-kicker" data-final="message">Nuevo récord</p>
+          <h2 data-i18n="game.gameOver">Fin de partida</h2>
+          <div class="result-grid">
+            <p><span data-i18n="game.finalScore">Puntuación final</span><strong data-final="score">0</strong></p>
+            <p><span data-i18n="game.finalTime">Tiempo total</span><strong><span data-final="time">0</span>s</strong></p>
+            <p><span data-i18n="game.bestScore">Récord</span><strong data-final="best">0</strong></p>
+          </div>
+          <div class="dialog-actions">
+            <button class="primary-action" type="button" data-action="restart" data-i18n="game.playAgain">Volver a jugar</button>
+            <button type="button" data-action="exit" data-i18n="game.exit">Salir</button>
+          </div>
+        </dialog>
+
+        <p class="toast" data-toast role="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "source": "/Users/jorgealonso/.codex/generated_images/019e8c4c-09d3-7552-9f3b-6ea685aa39f8/ig_02b380ea8df7c72c016a1fd20bd5648191a0d2716d2f85618e.png",
+  "rows": 2,
+  "cols": 2,
+  "frames": [
+    "healthy",
+    "rotten",
+    "worm",
+    "cracked"
+  ],
+  "processor": "local magenta chroma cleanup and frame extraction",
+  "transparent_sheet": "public/assets/sprites/cherries/sheet-transparent.png"
+}

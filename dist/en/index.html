@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Swipe spoiled cherries away before they leave the conveyor belt." data-i18n-attr="content:site.description" />
+    <meta name="theme-color" content="#8f1f35" />
+    <link rel="canonical" href="./" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <meta property="og:title" content="Cherries" data-i18n-attr="content:site.title" />
+    <meta property="og:description" content="Swipe spoiled cherries away before they leave the conveyor belt." data-i18n-attr="content:site.description" />
+    <meta property="og:type" content="website" />
+    <title>Cherries</title>
+    <link rel="stylesheet" href="../src/styles/global.css" />
+    <script type="module" src="../src/scripts/cherryGame.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="nav.play">Play</a>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Main">
+        <a class="brand" href="./" data-i18n="site.title">Cherries</a>
+        <div class="nav-links">
+          <a href="#play" data-i18n="nav.play">Play</a>
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#share" data-i18n="nav.share">Share</a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="game-shell" id="play" data-game data-assets-base="../assets/sprites/cherries/">
+        <div class="game-panel" data-screen="home">
+          <p class="kicker" data-i18n="game.kicker">Touch arcade</p>
+          <h1 data-i18n="game.title">Cherries</h1>
+          <p class="subtitle" data-i18n="game.subtitle">Discard rotten, wormy, or cracked cherries. The longer you last, the more points you earn.</p>
+          <div class="home-actions">
+            <button class="primary-action" type="button" data-action="show-difficulty" data-i18n="game.play">Play</button>
+            <button type="button" data-action="show-about" data-i18n="game.about">About</button>
+            <button type="button" id="share" data-action="share" data-i18n="game.share">Share</button>
+          </div>
+        </div>
+        <div class="game-panel is-hidden" data-screen="difficulty" aria-live="polite">
+          <h2 data-i18n="game.difficultyTitle">Choose difficulty</h2>
+          <div class="difficulty-grid" data-difficulty-grid></div>
+          <button type="button" data-action="home" data-i18n="game.back">Back</button>
+        </div>
+        <div class="play-area is-hidden" data-screen="play">
+          <button class="game-menu-button" type="button" data-action="open-menu" aria-label="Menu" data-i18n-attr="aria-label:game.menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="hud" aria-label="Scoreboard">
+            <span><span data-i18n="game.time" data-i18n-mobile="game.timeShort">Time</span><strong data-stat="time">0</strong></span>
+            <span><span data-i18n="game.score" data-i18n-mobile="game.scoreShort">Score</span><strong data-stat="score">0</strong></span>
+            <span><span data-i18n="game.missed" data-i18n-mobile="game.missedShort">Bad missed</span><strong><span data-stat="missed">0</span>/<span data-stat="limit">0</span></strong></span>
+          </div>
+          <canvas class="game-canvas" width="960" height="540" aria-label="Swipe bad cherries left or right. Let healthy cherries pass." data-i18n-attr="aria-label:game.instructions" data-canvas></canvas>
+        </div>
+        <dialog class="game-dialog" data-dialog="about" id="about">
+          <p data-i18n="game.aboutText">A faster and faster belt brings good and bad cherries from above. Swipe only the bad ones sideways.</p>
+          <button type="button" data-action="close-dialog" data-i18n="game.close">Close</button>
+        </dialog>
+        <dialog class="game-dialog menu-dialog" data-dialog="pause">
+          <p class="dialog-kicker" data-i18n="game.menu">Menu</p>
+          <h2 data-i18n="game.pauseTitle">Game paused</h2>
+          <div class="dialog-actions">
+            <button class="primary-action" type="button" data-action="resume" data-i18n="game.continue">Keep playing</button>
+            <button type="button" data-action="restart" data-i18n="game.restart">Restart</button>
+            <button type="button" data-action="exit" data-i18n="game.exit">Exit</button>
+          </div>
+        </dialog>
+        <dialog class="game-dialog" data-dialog="over">
+          <p class="dialog-kicker" data-final="message">New record</p>
+          <h2 data-i18n="game.gameOver">Game over</h2>
+          <div class="result-grid">
+            <p><span data-i18n="game.finalScore">Final score</span><strong data-final="score">0</strong></p>
+            <p><span data-i18n="game.finalTime">Total time</span><strong><span data-final="time">0</span>s</strong></p>
+            <p><span data-i18n="game.bestScore">Record</span><strong data-final="best">0</strong></p>
+          </div>
+          <div class="dialog-actions">
+            <button class="primary-action" type="button" data-action="restart" data-i18n="game.playAgain">Play again</button>
+            <button type="button" data-action="exit" data-i18n="game.exit">Exit</button>
+          </div>
+        </dialog>
+        <p class="toast" data-toast role="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </body>
+</html>
