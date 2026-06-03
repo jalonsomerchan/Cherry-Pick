@@ -12,39 +12,29 @@
     <link rel="canonical" href="./" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <meta property="og:title" content="Cerezas" data-i18n-attr="content:site.title" />
+    <meta property="og:title" content="Cherry Pick" data-i18n-attr="content:site.title" />
     <meta
       property="og:description"
       content="Aparta las cerezas en mal estado antes de que salgan de la cinta."
       data-i18n-attr="content:site.description"
     />
     <meta property="og:type" content="website" />
-    <title>Cerezas</title>
+    <title>Cherry Pick</title>
     <link rel="stylesheet" href="src/styles/global.css" />
     <script type="module" src="src/scripts/cherryGame.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="nav.play">Jugar</a>
-    <header class="site-header">
-      <nav class="site-nav" aria-label="Principal">
-        <a class="brand" href="./" data-i18n="site.title">Cerezas</a>
-        <div class="nav-links">
-          <a href="#play" data-i18n="nav.play">Jugar</a>
-          <a href="#about" data-i18n="nav.about">Acerca de</a>
-          <a href="#share" data-i18n="nav.share">Compartir</a>
-        </div>
-      </nav>
-    </header>
     <main id="main">
       <section class="game-shell" id="play" data-game data-assets-base="assets/sprites/cherries/">
-        <div class="game-panel" data-screen="home">
-          <p class="kicker" data-i18n="game.kicker">Arcade táctil</p>
-          <h1 data-i18n="game.title">Cerezas</h1>
+        <div class="game-panel" data-screen="home" aria-labelledby="home-title">
+          <p class="kicker" data-i18n="game.kicker">Awesome game</p>
+          <h1 id="home-title" data-i18n="game.title">Cherry Pick</h1>
           <p class="subtitle" data-i18n="game.subtitle">Descarta las cerezas podridas, con gusano o rajadas. Cuanto más aguantes, más puntos ganas.</p>
-          <div class="home-actions">
+          <div class="home-actions" aria-label="Menú principal" data-i18n-attr="aria-label:game.mainMenu">
             <button class="primary-action" type="button" data-action="show-difficulty" data-i18n="game.play">Jugar</button>
-            <button type="button" data-action="show-about" data-i18n="game.about">Acerca de</button>
-            <button type="button" id="share" data-action="share" data-i18n="game.share">Compartir</button>
+            <button type="button" data-action="show-about" data-i18n="game.options">Opciones</button>
+            <button type="button" id="share" data-action="share" data-i18n="game.credits">Créditos</button>
           </div>
         </div>
 
