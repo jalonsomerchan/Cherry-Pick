@@ -79,13 +79,26 @@ test('mobile play view gives the conveyor full available height', async () => {
 test('arcade home removes site header and keeps main menu actions', async () => {
   const shell = await readFile('index.html', 'utf8');
   const css = await readFile('src/styles/global.css', 'utf8');
+  const translations = await readFile('src/i18n/translations.js', 'utf8');
 
   assert.doesNotMatch(shell, /class="site-header"/);
   assert.match(shell, /Cherry Pick/);
+  assert.doesNotMatch(shell, /Awesome game/);
+  assert.doesNotMatch(translations, /Awesome game/);
   assert.match(shell, /data-i18n="game\.options"/);
   assert.match(shell, /data-i18n="game\.credits"/);
-  assert.match(css, /linear-gradient\(180deg, #d7c2d2/);
-  assert.match(css, /-webkit-text-stroke/);
+  assert.match(css, /linear-gradient\(180deg, #b7e98b/);
+  assert.match(css, /radial-gradient\(circle at 12% 34%, #2f8f48/);
+  assert.doesNotMatch(css, /-webkit-text-stroke|text-stroke/);
+});
+
+test('github pages build includes nojekyll marker and workflow', async () => {
+  const workflow = await readFile('.github/workflows/deploy-pages.yml', 'utf8');
+  const build = await readFile('tools/build.mjs', 'utf8');
+
+  assert.match(workflow, /actions\/deploy-pages@v4/);
+  assert.match(workflow, /npm run build/);
+  assert.match(build, /'\.nojekyll'/);
 });
 
 test('hamburger menu pauses and end screen tracks records', async () => {

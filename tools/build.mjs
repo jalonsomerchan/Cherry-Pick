@@ -1,6 +1,6 @@
 import { cp, mkdir, rm } from 'node:fs/promises';
 
-const files = ['index.html', 'manifest.webmanifest', 'robots.txt', 'favicon.svg'];
+const files = ['index.html', 'manifest.webmanifest', 'robots.txt', 'favicon.svg', '.nojekyll'];
 const dirs = ['assets', 'src', 'en'];
 
 await rm('dist', { force: true, recursive: true });

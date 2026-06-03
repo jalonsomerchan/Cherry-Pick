@@ -1,13 +1,13 @@
 :root {
   color-scheme: light;
-  --color-bg: #f3dce9;
+  --color-bg: #dff3bd;
   --color-surface: #ffffff;
-  --color-surface-soft: #ffe9df;
-  --color-text: #3b1615;
-  --color-muted: #74545c;
-  --color-primary: #f65f2d;
-  --color-primary-strong: #4c1514;
-  --color-accent: #ffd14a;
+  --color-surface-soft: #fff4ec;
+  --color-text: #31130f;
+  --color-muted: #5e3f32;
+  --color-primary: #c4122f;
+  --color-primary-strong: #8d0f22;
+  --color-accent: #ffe27a;
   --color-belt: #51464b;
   --color-belt-line: #d4c1b5;
   --color-focus: #0b6fba;
@@ -23,13 +23,13 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --color-bg: #171225;
+    --color-bg: #132617;
     --color-surface: #241a1e;
     --color-surface-soft: #39242b;
     --color-text: #fff5f1;
     --color-muted: #d3b6bd;
-    --color-primary: #ff7b35;
-    --color-primary-strong: #4c1514;
+    --color-primary: #ff4d5f;
+    --color-primary-strong: #8d0f22;
     --color-accent: #ffe177;
     --color-belt: #665a60;
     --color-belt-line: #33282d;
@@ -110,10 +110,8 @@ a:focus-visible {
   padding: var(--space-page);
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 82% 17%, rgb(255 246 96 / 78%) 0 8%, transparent 8.4%),
-    radial-gradient(ellipse at 25% 32%, rgb(255 255 255 / 95%) 0 9%, transparent 9.4%),
-    radial-gradient(ellipse at 78% 45%, rgb(255 255 255 / 90%) 0 10%, transparent 10.4%),
-    linear-gradient(180deg, #d7c2d2 0%, #f5edf4 62%, #7a3f8a 62%, #563171 78%, #241b52 78% 100%);
+    radial-gradient(circle at 78% 12%, rgb(255 239 122 / 78%) 0 6rem, transparent 6.1rem),
+    linear-gradient(180deg, #b7e98b 0 45%, #86c85d 45% 72%, #4f8d3e 72% 100%);
 }
 
 .game-shell::before,
@@ -125,23 +123,26 @@ a:focus-visible {
 
 .game-shell::before {
   inset-inline: -6rem;
-  inset-block-end: 17%;
-  height: 26%;
+  inset-block-end: 12%;
+  height: 54%;
   background:
-    linear-gradient(135deg, transparent 0 16%, #c47f7c 16% 33%, transparent 33%) 6% 100% / 26rem 18rem no-repeat,
-    linear-gradient(135deg, transparent 0 20%, #be8581 20% 42%, transparent 42%) 58% 100% / 32rem 17rem no-repeat,
-    linear-gradient(135deg, transparent 0 20%, #d9bab2 20% 42%, transparent 42%) 83% 100% / 22rem 15rem no-repeat;
-  opacity: 0.9;
+    radial-gradient(circle at 12% 34%, #2f8f48 0 5.8rem, transparent 5.9rem),
+    radial-gradient(circle at 21% 20%, #3ba75b 0 6.7rem, transparent 6.8rem),
+    radial-gradient(circle at 30% 37%, #287d3e 0 5.4rem, transparent 5.5rem),
+    radial-gradient(circle at 73% 25%, #3fa85b 0 7rem, transparent 7.1rem),
+    radial-gradient(circle at 84% 39%, #2d8846 0 5.8rem, transparent 5.9rem),
+    linear-gradient(90deg, transparent 0 17%, #7d4b2d 17% 19%, transparent 19% 78%, #704327 78% 80%, transparent 80%);
+  opacity: 0.96;
 }
 
 .game-shell::after {
   inset-inline: -10%;
   inset-block-end: -3%;
-  height: 27%;
+  height: 25%;
   background:
-    radial-gradient(85% 75% at 20% 0%, #73439a 0 49%, transparent 50%),
-    radial-gradient(100% 80% at 78% 12%, #9a55ae 0 48%, transparent 49%),
-    linear-gradient(180deg, #46306f, #231b50);
+    radial-gradient(60% 80% at 18% 10%, #3f842e 0 48%, transparent 49%),
+    radial-gradient(80% 75% at 72% 0%, #4f9d38 0 48%, transparent 49%),
+    linear-gradient(180deg, #5aa33b, #2f6e2f);
 }
 
 .game-panel,
@@ -166,14 +167,13 @@ a:focus-visible {
 
 .kicker {
   margin: 0;
-  color: #ffffff;
-  font-size: clamp(1.35rem, 7vw, 3.6rem);
-  font-weight: 1000;
-  letter-spacing: 0.04em;
-  line-height: 0.9;
+  color: #315d25;
+  font-size: clamp(0.92rem, 3.8vw, 1.2rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
   text-transform: uppercase;
-  -webkit-text-stroke: clamp(0.12rem, 0.8vw, 0.32rem) var(--color-primary-strong);
-  text-shadow: 0.3rem 0.28rem 0 rgb(0 0 0 / 18%);
+  text-shadow: none;
 }
 
 h1,
@@ -183,14 +183,13 @@ p {
 }
 
 h1 {
-  color: #ffd765;
-  font-size: clamp(3.9rem, 18vw, 8rem);
+  color: var(--color-primary);
+  font-size: clamp(3.6rem, 16vw, 7.4rem);
   font-weight: 1000;
-  letter-spacing: 0.02em;
-  line-height: 0.76;
+  letter-spacing: 0;
+  line-height: 0.82;
   text-transform: uppercase;
-  -webkit-text-stroke: clamp(0.22rem, 1vw, 0.46rem) var(--color-primary-strong);
-  text-shadow: 0.42rem 0.36rem 0 rgb(0 0 0 / 18%);
+  text-shadow: 0 0.22rem 0 rgb(255 255 255 / 70%);
 }
 
 h2 {
@@ -201,8 +200,8 @@ h2 {
   max-width: 28rem;
   border-radius: 999px;
   padding: 0.55rem 1rem;
-  background: rgb(255 255 255 / 62%);
-  color: #4c2b31;
+  background: rgb(255 255 255 / 76%);
+  color: #315d25;
   font-size: clamp(0.92rem, 2vw, 1.05rem);
   font-weight: 750;
 }
@@ -230,24 +229,22 @@ h2 {
 .primary-action,
 .difficulty-grid button {
   min-height: clamp(4rem, 11vw, 5.2rem);
-  border: 0.38rem solid var(--color-primary-strong);
+  border: 0.16rem solid rgb(255 255 255 / 72%);
   border-radius: 999px;
   padding: 0.8rem clamp(1.2rem, 7vw, 3rem);
   background:
-    radial-gradient(circle at 13% 26%, rgb(255 255 255 / 84%) 0 7%, transparent 8%),
-    linear-gradient(180deg, #ffe271 0 18%, #ffbf25 19% 54%, #f68116 55% 100%);
+    radial-gradient(circle at 13% 26%, rgb(255 255 255 / 70%) 0 7%, transparent 8%),
+    linear-gradient(180deg, #f34a58, #b80f2b);
   box-shadow:
-    inset 0 0.4rem 0 rgb(255 255 255 / 44%),
-    inset 0 -0.42rem 0 rgb(216 55 28 / 80%),
-    0 0.45rem 0 rgb(80 22 20 / 28%);
+    inset 0 0.26rem 0 rgb(255 255 255 / 26%),
+    0 0.45rem 1rem rgb(38 82 26 / 24%);
   color: #ffffff;
   font-size: clamp(1.45rem, 7vw, 2.6rem);
   font-weight: 1000;
   letter-spacing: 0.05em;
   line-height: 1;
   text-transform: uppercase;
-  -webkit-text-stroke: 0.12rem var(--color-primary-strong);
-  text-shadow: 0.18rem 0.16rem 0 var(--color-primary-strong);
+  text-shadow: none;
 }
 
 .home-actions button:hover,
@@ -272,8 +269,7 @@ h2 {
   color: #ffffff;
   font-size: 0.85rem;
   font-weight: 850;
-  -webkit-text-stroke: 0;
-  text-shadow: 0.08rem 0.08rem 0 var(--color-primary-strong);
+  text-shadow: none;
 }
 
 .play-area {

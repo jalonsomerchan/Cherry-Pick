@@ -17,26 +17,16 @@
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="nav.play">Play</a>
-    <header class="site-header">
-      <nav class="site-nav" aria-label="Main">
-        <a class="brand" href="./" data-i18n="site.title">Cherries</a>
-        <div class="nav-links">
-          <a href="#play" data-i18n="nav.play">Play</a>
-          <a href="#about" data-i18n="nav.about">About</a>
-          <a href="#share" data-i18n="nav.share">Share</a>
-        </div>
-      </nav>
-    </header>
     <main id="main">
       <section class="game-shell" id="play" data-game data-assets-base="../assets/sprites/cherries/">
-        <div class="game-panel" data-screen="home">
-          <p class="kicker" data-i18n="game.kicker">Touch arcade</p>
-          <h1 data-i18n="game.title">Cherries</h1>
+        <div class="game-panel" data-screen="home" aria-labelledby="home-title">
+          <p class="kicker" data-i18n="game.kicker">Fast harvest</p>
+          <h1 id="home-title" data-i18n="game.title">Cherry Pick</h1>
           <p class="subtitle" data-i18n="game.subtitle">Discard rotten, wormy, or cracked cherries. The longer you last, the more points you earn.</p>
-          <div class="home-actions">
+          <div class="home-actions" aria-label="Main menu" data-i18n-attr="aria-label:game.mainMenu">
             <button class="primary-action" type="button" data-action="show-difficulty" data-i18n="game.play">Play</button>
-            <button type="button" data-action="show-about" data-i18n="game.about">About</button>
-            <button type="button" id="share" data-action="share" data-i18n="game.share">Share</button>
+            <button type="button" data-action="show-about" data-i18n="game.options">Options</button>
+            <button type="button" id="share" data-action="share" data-i18n="game.credits">Credits</button>
           </div>
         </div>
         <div class="game-panel is-hidden" data-screen="difficulty" aria-live="polite">
